@@ -16,10 +16,12 @@
 
 
                     @if (auth()->user()->hasPermissionTo('write posts'))
-                    <form>
+                    <form action="/posts" method="POST">
+                        @csrf
+
                         <div class="form-group">
                             <label for="account_type">{{ __('Add a premium only post') }}</label>
-                            <textarea class="form-control"></textarea>
+                            <textarea name="body" class="form-control"></textarea>
                         </div>
 
                         <div class="form-group">
