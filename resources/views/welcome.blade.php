@@ -79,16 +79,22 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Premium Posts
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                @auth
+                    @foreach ($posts as $post)
+                    <div class="card">
+                        <div class="card-body">
+                            <p>
+                                <strong>{{ $post->user->name }} {{ $post->created_at->diffForHumans() }}: {{ $post->body }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    @endforeach
+                @else
+                    <h2>Please login to view posts.</h2>
+                @endauth
             </div>
         </div>
     </body>
