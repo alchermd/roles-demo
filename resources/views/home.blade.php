@@ -14,7 +14,21 @@
                         </div>
                     @endif
 
-                    You are logged in!
+
+                    @if (auth()->user()->hasPermissionTo('write posts'))
+                    <form>
+                        <div class="form-group">
+                            <label for="account_type">{{ __('Add a premium only post') }}</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </form>
+                    @else
+                        <p>Please upgrade to a premium account.</p>
+                    @endif
                 </div>
             </div>
         </div>
